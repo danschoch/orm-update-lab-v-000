@@ -38,7 +38,7 @@ class Student
     SQL
 
     result = DB[:conn].execute(sql, name)[0]
-    self.new(result[0], result[1], result[2])
+    self.new(result[1],result[2], result[0])
 
   end
 
