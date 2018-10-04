@@ -35,19 +35,14 @@ class Student
     sql = <<-SQL
       SELECT * FROM students
       WHERE name = ?
-      LIMIT 1
     SQL
 
-    DB[:conn].execute(sql, name).map do |row|
-      self.new_from_db(row)
-    end.first
+    result = DB[:conn].execute(sql, name)[0]
+    
   end
 
   def self.new_from_db(row)
-    new_student = self.new
-    new_student.id = row[0]
-    new_student.name = row[1]
-    new_student.grade = row [2]
+    new_student = self.new[row[1], row[2], row[0]]
     new_student
   end
 
