@@ -36,8 +36,7 @@ class Student
       SELECT * FROM students WHERE name = ?;
     SQL
 
-    DB[:conn].execute(sql, self.name, self.grade)
-    @id = DB[:conn].execute("SELECT last_insert_rowid() FROM students")[0][0]
+    DB[:conn].execute(sql, name)
   end
 
   def save
